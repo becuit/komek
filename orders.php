@@ -16,7 +16,7 @@ if (!$_SESSION['m_un']){
 	<title>Orders</title>
 	<style>
 		.topnav {
-  background-color: #333;
+  background-color: #7E8CF2;
   overflow: hidden;
   height: 60px;
 }
@@ -45,7 +45,7 @@ if (!$_SESSION['m_un']){
 }*/
 body {
   margin: 15px;
-  background-color: #EDF0F3;
+  background-color: #F8F8FF;
 }
 
 .register {
@@ -61,7 +61,7 @@ body {
   margin-left: -20px;
 }
 .lr {
-  margin-top: -40px;
+  margin-top: -50px;
   margin-left: 1160px;
 }
 
@@ -86,19 +86,20 @@ body {
 }
 
 table {
-  margin-left: 200px;
+  margin-left: 150px;
   border: pixels;
   padding-top: 50px;
   margin-right: 30px;
 }
 
 td {
-  padding-left: 20px;
+  
 }
 
 .nick {
   text-align: center;
 }
+
 
 </style>
 </head>
@@ -108,7 +109,7 @@ td {
 
 	<div class="topnav" >
   
-<img src="helplogo.png"  height="60" width="80" />
+<img src="logo.png"  height="60" width="80" />
   <a href="home.php">Home</a>
   <a href="orders.php">Orders</a>
   <a href="contacts.php">Contacts</a>
@@ -120,8 +121,7 @@ td {
      </button>
    </div>
   <div class="lr">
-  <a href="login.php">Log in</a>
-  <a href="register.php">Register</a>
+	<a href="login.php">Log in</a>
 </div>
 </div>
 
@@ -149,10 +149,14 @@ td {
     $message_success = 'The operation ended successfully';
     $message_error = 'Please try again';
     
-    $button_ar = array(1=> 'button1', 2=> 'button2', 3=>'button3',);
+    $button_ar = array(1=> 'button1', 2=> 'button2', 3=>'button3', 4=>'button4', 5=>'button5', 6=>'button5', 7=>'button5');
     
     
     $n = 1;
+	$column_1 = array(1,4,7,10,13,16,19);
+	$column_2 = array(2,5,8,11,14,17,20);
+	$column_3 = array(3,6,9,12,15,18,21);
+	
     while($result= mysqli_fetch_array($sth)){  
         
 
@@ -172,40 +176,106 @@ td {
             }
          }
         
-         
+        if (in_array($n, $column_1)){ 
         ?>
-
-    
-        
-        <table>
-        <tr>
-          <td><?php
-        echo '<img src="data:image/jpeg;base64,'.base64_encode( $result['client_image'] ).'" height="250" width="165"/> 
-        ';?>
-      </td>
-      <td>
-        <p><strong>Name:</strong> 
-        <?php echo $result["client_name"]; $name = $result["client_name"]?> </p> 
-        <?php
-        ?> 
-        <p> <strong>From:</strong>  
-        <?php echo $result["order_address_from"] ?> </p>
-        <p> <strong>To:</strong> 
-        <?php echo $result["order_address_to"]?> </p> 
-        <p> <strong>Date:</strong> 
-        <?php echo $result["order_date"]?> </p> 
-        <p> <strong>Order status:</strong> 
-        <?php echo $result["order_status"]?> </p> 
-        <form method="post" action="orders.php">
-        <!-- <button onclick="confirmation()">Take the order</button> -->
-        <input name="$button_ar[$n]" type="submit" value="Take the order">
-        <!-- onclick="return confirm('Are you sure?')" -->
-      </form>
-      </td>
-    </tr>
-    </table>
-
+		<table>
+			<th>
+				<table class = "table1">
+					<tr>
+						<td>
+							<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $result['client_image'] ).'" height="240" width="180"/> ';?>
+						</td>
+						<td>
+					<p><strong>Name:</strong> 
+					<?php echo $result["client_name"]; $name = $result["client_name"]?> </p> 
+					<?php
+					?> 
+					<p> <strong>From:</strong>  
+					<?php echo $result["order_address_from"] ?> </p>
+					<p> <strong>To:</strong> 
+					<?php echo $result["order_address_to"]?> </p> 
+					<p> <strong>Date:</strong> 
+					<?php echo $result["order_date"]?> </p> 
+					<p> <strong>Order status:</strong> 
+					<?php echo $result["order_status"]?> </p> 
+					<form method="post" action="orders.php">
+					<!-- <button onclick="confirmation()">Take the order</button> -->
+					<input name="$button_ar[$n]" type="submit" value="Take the order">
+					<!-- onclick="return confirm('Are you sure?')" -->
+				  </form>
+				  </td>
+				</tr>
+				</table>
+			</th>
+	<?php
+	}
+	if (in_array($n, $column_2)){
+	?> 
+			<th>
+				<table class = "table2">
+					<tr>
+						<td>
+							<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $result['client_image'] ).'" height="240" width="180"/> ';?>
+						</td>
+						<td>
+							<p><strong>Name:</strong> 
+							<?php echo $result["client_name"]; $name = $result["client_name"]?> </p> 
+							<?php
+							?> 
+							<p> <strong>From:</strong>  
+							<?php echo $result["order_address_from"] ?> </p>
+							<p> <strong>To:</strong> 
+							<?php echo $result["order_address_to"]?> </p> 
+							<p> <strong>Date:</strong> 
+							<?php echo $result["order_date"]?> </p> 
+							<p> <strong>Order status:</strong> 
+							<?php echo $result["order_status"]?> </p> 
+							<form method="post" action="orders.php">
+								<!-- <button onclick="confirmation()">Take the order</button> -->
+								<input name="$button_ar[$n]" type="submit" value="Take the order">
+								<!-- onclick="return confirm('Are you sure?')" -->
+							</form>
+						</td>
+					</tr>
+				</table>
+			</th>
+			
+			<?php
+			}
+			if (in_array($n, $column_3)){
+			?>
+			
+			<th>
+				<table class = "table1">
+					<tr>
+						<td>
+							<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $result['client_image'] ).'" height="240" width="180"/> ';?>
+						</td>
+						<td>
+					<p><strong>Name:</strong> 
+					<?php echo $result["client_name"]; $name = $result["client_name"]?> </p> 
+					<?php
+					?> 
+					<p> <strong>From:</strong>  
+					<?php echo $result["order_address_from"] ?> </p>
+					<p> <strong>To:</strong> 
+					<?php echo $result["order_address_to"]?> </p> 
+					<p> <strong>Date:</strong> 
+					<?php echo $result["order_date"]?> </p> 
+					<p> <strong>Order status:</strong> 
+					<?php echo $result["order_status"]?> </p> 
+					<form method="post" action="orders.php">
+					<!-- <button onclick="confirmation()">Take the order</button> -->
+					<input name="$button_ar[$n]" type="submit" value="Take the order">
+					<!-- onclick="return confirm('Are you sure?')" -->
+				  </form>
+				  </td>
+				</tr>
+				</table>
+			</th>
+			
     <?php
+	}
       $n = $n + 1;
     }    
 ?>
